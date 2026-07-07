@@ -16,7 +16,6 @@ router = Router(name="main")
 
 @router.message(CommandStart())
 async def cmd_start(message: Message) -> None:
-    """`/start` buyrug'iga javob: salomlashadi va lokatsiya so'raydi."""
     await message.answer(
         "Assalomu alaykum! 👋\n\n"
         "Men sizga eng yaqin *propan (LPG)* yoki *metan (CNG)* "
@@ -28,7 +27,6 @@ async def cmd_start(message: Message) -> None:
 
 @router.message(F.location)
 async def handle_location(message: Message) -> None:
-    """Foydalanuvchi lokatsiya yuborganda ishlaydi."""
     loc = message.location
 
     searching_msg = await message.answer(
@@ -77,7 +75,6 @@ async def handle_location(message: Message) -> None:
             reply_markup=maps_inline_keyboard(station["lat"], station["lon"]),
         )
 
-    # Qo'shimcha - Telegram xaritasida pin sifatida ham yuboramiz
     await message.answer_location(latitude=station["lat"], longitude=station["lon"])
 
 
